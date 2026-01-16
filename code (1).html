@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Image Studio - Professional Photography by Ajay Singh Tomar</title>
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #e94560;
+            --light: #f1f1f1;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+        .logo span {
+            color: var(--accent);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 2rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        .cta-btn {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(233, 69, 96, 0.4);
+        }
+        .hero {
+            height: calc(100vh - 70px);
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b2d2f3b6-d68b-4a8d-baf1-14f0b893aa69.png') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 70px;
+        }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            z-index: -1;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 15px auto 0;
+        }
+        .services {
+            background-color: white;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .service-content {
+            padding: 1.5rem;
+        }
+        .service-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .gallery {
+            padding-bottom: 3rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 300px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .contact {
+            background-color: var(--secondary);
+            color: white;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        .contact-info h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .contact-info p {
+            margin-bottom: 1rem;
+        }
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .contact-form h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+            font-weight: 500;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        textarea.form-control {
+            min-height: 150px;
+        }
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        footer p:last-child {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Sam <span>Image</span> Studio</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-btn">Book Now</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39bdaaf9-3f84-4182-b85a-2fe5223d66fb.png" alt="Professional photographer taking pictures at golden hour with model posing against sunset" />
+        <div class="hero-content">
+            <h1>Capture Your Beautiful Moments</h1>
+            <p>Professional photography services by Ajay Singh Tomar with over 10 years of experience in creating stunning visuals that tell your unique story.</p>
+            <a href="#contact" class="cta-btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b9585a6e-7c0f-4d22-908a-9f724f377d6d.png" alt="Couple laughing during a candid wedding photoshoot in lush garden setting" />
+                <div class="service-content">
+                    <h3>Candid Photography</h3>
+                    <p>Natural, unposed moments captured beautifully to create authentic memories of your special occasions.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0cbc6f36-e335-44b2-a06f-5394760a4fe3.png" alt="Film crew shooting a cinematic sequence with professional lighting setup" />
+                <div class="service-content">
+                    <h3>Cinematography</h3>
+                    <p>High-quality videography services to document your events with cinematic quality and professional editing.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4151905d-efa6-4bd3-b012-9d3ba1d1afa7.png" alt="Professional model posing for portfolio shoot in studio with soft lighting" />
+                <div class="service-content">
+                    <h3>Portfolio Shoot</h3>
+                    <p>Professional portfolio photography to showcase your personality or products in the best possible light.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c5db567d-69d4-4655-868a-ccad0e389eca.png" alt="E-commerce product photography setup with camera and lighting reflectors" />
+                <div class="service-content">
+                    <h3>Product Photography</h3>
+                    <p>Showcase your products with high-quality images that highlight features and attract customers.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a9a0f55d-8af3-4ede-9533-3d56bb4b8918.png" alt="Couple posing for matrimonial photos in traditional attire in palace setting" />
+                <div class="service-content">
+                    <h3>Matrimonial Photo Shoot</h3>
+                    <p>Beautiful portraits for wedding profiles that represent you at your best.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/48059d4e-27a5-4ad0-a8c1-9c8b3a835ba0.png" alt="Aerial drone shot capturing a large wedding ceremony from above" />
+                <div class="service-content">
+                    <h3>Drone Shoot</h3>
+                    <p>Capture breathtaking aerial perspectives of your events and locations with our professional drone photography.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/29b07127-adb5-48c0-94b1-2e7459d61293.png" alt="Pregnant woman having maternity photo session in blooming flower garden" />
+                <div class="service-content">
+                    <h3>Maternity Shoot</h3>
+                    <p>Celebrate the beauty of pregnancy with stunning maternity photos that capture this special time.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c50b8cfa-afb1-4591-a07b-5306f8201506.png" alt="Couple enjoying pre-wedding photo shoot at scenic beach location at sunset" />
+                <div class="service-content">
+                    <h3>Pre-wedding Shoot</h3>
+                    <p>Romantic and creative photo sessions that capture your love story before your wedding day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">Our Work</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d67e0859-1049-45c3-9123-41336619afce.png" alt="Wedding couple walking through flower petal shower with dramatic lighting" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/971cafe5-e825-42f0-beb3-b6b6f05c094c.png" alt="Corporate event photography with speaker on stage and engaged audience" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bdfacd29-6a45-455e-b8ff-0c0e7b04755a.png" alt="Newborn baby photography with soft lighting and props in neutral tones" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2c8c8f1f-4798-41a2-8ef3-841f6e05fa01.png" alt="Food photography with chef preparing gourmet dish in professional kitchen" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/33de998c-56cd-4b54-b30f-5c149b247c7d.png" alt="Fashion model posing for editorial shoot in urban street setting" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f60d7808-c5ec-439d-b4b1-90f7342962b4.png" alt="Golden hour portrait of couple in love field with dramatic sunset backdrop" />
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p><strong>Studio:</strong> Sam Image Studio</p>
+                <p><strong>Photographer:</strong> Ajay Singh Tomar</p>
+                <p><strong>Address:</strong> Shop No. 5, Plot No.6, Dwarka Sector-6, New Delhi -110075, Central Market</p>
+                <p><strong>Email:</strong> Samsimagestudio@gmail.com</p>
+                <p><strong>Hours:</strong> Monday-Saturday: 10:00 AM - 8:00 PM</p>
+            </div>
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" class="form-control">
+                            <option value="">Select a service</option>
+                            <option value="candid">Candid Photography</option>
+                            <option value="cinematography">Cinematography</option>
+                            <option value="portfolio">Portfolio Shoot</option>
+                            <option value="product">Product Photography</option>
+                            <option value="matrimonial">Matrimonial Photo Shoot</option>
+                            <option value="event">Event Photography</option>
+                            <option value="preewedding">Pre-wedding Shoot</option>
+                            <option value="maternity">Maternity Shoot</option>
+                            <option value="drone">Drone Shoot</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn" style="width: 100%; border: none;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2023 Sam Image Studio. All Rights Reserved.</p>
+        <p>Professional Photography by Ajay Singh Tomar</p>
+        <p>Website designed & developed by Ashish Suman Pratap Singh Tomar</p>
+    </footer>
+
+    <script>
+        // Detect device type
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Apply device-specific settings
+        document.documentElement.classList.add(isMobile ? 'mobile' : 'desktop');
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            // Here you would typically send the form data to a server
+            // For demo purposes, we'll just show an alert
+            alert(`Thank you ${name}! We've received your message and will contact you at ${email} shortly.`);
+            
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
